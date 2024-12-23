@@ -286,6 +286,29 @@ func (t *tokens) isTokenAfterFileMetadata(tkn *token) bool {
 	return isAfter
 }
 
+// isTokenAfterSeason checks if the specified token comes after a season token
+// If there's no season token, it returns false
+func (t *tokens) isTokenAfterSeason(tkn *token) (isAfter bool, foundSeasonTkn bool) {
+	index := t.getIndexOf(tkn)
+	if index == -1 {
+		return false, false
+	}
+	foundSeasonTkn = false
+	isAfter = false
+
+	for idx, _tkn := range *t {
+		if _tkn.isMetadataCategory(metadataSeason) {
+			foundSeasonTkn = true
+		}
+		// Check if token is after season token
+		if !_tkn.isUnknown() && idx != index && idx < index && _tkn.isMetadataCategory(metadataSeason) {
+			isAfter = true
+		}
+	}
+
+	return isAfter, foundSeasonTkn
+}
+
 func (t *tokens) getIndexOf(tkn *token) int {
 	for i, _tkn := range *t {
 		if _tkn.UUID == tkn.UUID {

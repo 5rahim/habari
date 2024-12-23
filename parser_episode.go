@@ -317,6 +317,11 @@ func (p *parser) parseEpisodeBySearching(aggressive bool) bool {
 				if !p.tokenManager.tokens.isIsolated(lastNumTkn) {
 					break
 				}
+
+				// if the season has been parsed, it should be after the season
+				if isAfter, foundSeasonTkn := p.tokenManager.tokens.isTokenAfterSeason(lastNumTkn); foundSeasonTkn && !isAfter {
+					break
+				}
 			} else if lastNumTkn.isNumberLikeKind() {
 				if !isReasonableEpisodeNumber(lastNumTkn.getValue()) {
 					break

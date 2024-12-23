@@ -66,7 +66,7 @@ func TestSeanimeParserIsolated(t *testing.T) {
 	data := getData()
 	assert.NotNil(t, data)
 
-	filename := "Saiki Kusuo no Psi Nan 1x10.mkv"
+	filename := "[Salieri] Zom 100 Bucket List of the Dead - S1 - BD (1080p) (HDR) [Dual Audio]"
 
 	for _, tt := range data {
 

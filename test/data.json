@@ -3156,5 +3156,24 @@
       "15"
     ],
     "file_extension": "mkv"
+  },
+  {
+    "file_name": "[Salieri] Zom 100 Bucket List of the Dead - S1 - BD (1080p) (HDR) [Dual Audio]",
+    "title": "Zom 100 Bucket List of the Dead",
+    "formatted_title": "Zom 100 Bucket List of the Dead",
+    "season_number": [
+      "1"
+    ],
+    "source": [
+      "BD"
+    ],
+    "video_resolution": "1080p",
+    "video_term": [
+      "HDR"
+    ],
+    "audio_term": [
+      "Dual Audio"
+    ],
+    "release_group": "Salieri"
   }
 ]
