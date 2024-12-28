@@ -37,3 +37,35 @@ func extractSeasonAndEpisode(input string) (season string, separator string, epi
 
 	return
 }
+
+func extractSeasonAndPart(input string) (season string, separator string, part string, ok bool) {
+	re := regexp.MustCompile(`(?i)^(s?)(\d+)(p)((\d+)('|([vV]\d{1,2}))?)$`)
+
+	captures := re.FindStringSubmatch(input)
+
+	if captures == nil {
+		return "", "", "", false
+	}
+
+	season = strings.TrimSpace(captures[2])
+	separator = strings.TrimSpace(captures[3])
+	part = strings.TrimSpace(captures[4])
+	ok = true
+
+	// Make sure numbers are zero-padded to avoid capturing strings like "1x3"
+	if strings.ToLower(separator) == "x" {
+		//nSeason, _ := strconv.Atoi(season)
+		nPart, _ := strconv.Atoi(part)
+		//if nSeason < 10 && !strings.HasPrefix(season, "0") {
+		//	return "", "", "", false
+		//}
+		if season == "0" && nPart > 500 { // avoid 0x539
+			return "", "", "", false
+		}
+		if nPart < 10 && !strings.HasPrefix(part, "0") {
+			return "", "", "", false
+		}
+	}
+
+	return
+}

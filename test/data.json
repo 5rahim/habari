@@ -3175,5 +3175,29 @@
       "Dual Audio"
     ],
     "release_group": "Salieri"
+  },
+  {
+    "file_name": "The Case Study of Vanitas S01P01 1080p Dual Audio BDRip 10 bits DD x265-EMBER",
+    "title": "The Case Study of Vanitas",
+    "formatted_title": "The Case Study of Vanitas",
+    "season_number": [
+      "01"
+    ],
+    "part_number": [
+      "01"
+    ],
+    "source": [
+      "BDRip"
+    ],
+    "video_resolution": "1080p",
+    "video_term": [
+      "10 bits",
+      "x265"
+    ],
+    "audio_term": [
+      "Dual Audio",
+      "DD"
+    ],
+    "release_group": "EMBER"
   }
 ]

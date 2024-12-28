@@ -57,6 +57,33 @@ func (p *parser) parseSeason() {
 
 				continue // Skip to next token
 			}
+
+			// Extract season and part
+			if season, sep, part, ok := extractSeasonAndPart(tkn.getValue()); ok {
+				seasonPrefixTkn := newToken("S")
+				seasonPrefixTkn.setIdentifiedKeywordCategory(keywordCatSeasonPrefix, keywordKindCombinedWithNumber)
+				seasonPrefixTkn.setKind(tokenKindCharacter)
+
+				seasonTkn := newToken(season)
+				seasonTkn.setMetadataCategory(metadataSeason)
+				seasonTkn.setKind(tokenKindNumber)
+
+				sepTkn := newToken(sep)
+				sepTkn.setIdentifiedKeywordCategory(keywordCatPartPrefix, keywordKindCombinedWithNumber)
+				sepTkn.setKind(tokenKindCharacter)
+
+				partTkn := newToken(part)
+				partTkn.setMetadataCategory(metadataPart)
+				partTkn.setKind(tokenKindNumberLike)
+				if isNumber(part) {
+					partTkn.setKind(tokenKindNumber)
+					p.tokenManager.tokens.checkNumberWithDecimal(partTkn) // Check if number is decimal
+				}
+
+				p.tokenManager.tokens.overwriteAndInsertManyAt(p.tokenManager.tokens.getIndexOf(tkn), []*token{seasonPrefixTkn, seasonTkn, sepTkn, partTkn})
+
+				continue // Skip to next token
+			}
 		}
 
 		// Combined or separated seasons/volumes/parts

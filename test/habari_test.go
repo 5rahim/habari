@@ -66,7 +66,7 @@ func TestSeanimeParserIsolated(t *testing.T) {
 	data := getData()
 	assert.NotNil(t, data)
 
-	filename := "[Salieri] Zom 100 Bucket List of the Dead - S1 - BD (1080p) (HDR) [Dual Audio]"
+	filename := "The Case Study of Vanitas S01P01 1080p Dual Audio BDRip 10 bits DD x265-EMBER"
 
 	for _, tt := range data {
 
