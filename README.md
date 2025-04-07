@@ -1,5 +1,5 @@
 <p align="center">
-<img src="./docs/logo.png" alt="preview" width="150px"/>
+<img src="./docs/logo-02.png" alt="preview" width="200px"/>
 </p>
 
 <h2 align="center"><b>Habari</b></h2>
