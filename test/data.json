@@ -3199,5 +3199,16 @@
       "DD"
     ],
     "release_group": "EMBER"
+  },
+  {
+    "file_name": "S01E001-S01E182",
+    "season_number": [
+      "01",
+      "01"
+    ],
+    "episode_number": [
+      "001",
+      "182"
+    ]
   }
 ]

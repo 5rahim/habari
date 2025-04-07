@@ -3,9 +3,6 @@ package habari
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/5rahim/habari"
-	"github.com/stretchr/testify/assert"
-	"golang.org/x/text/unicode/norm"
 	"io/ioutil"
 	"log"
 	"os"
@@ -14,6 +11,10 @@ import (
 	"testing"
 	"time"
 	"unicode"
+
+	"github.com/5rahim/habari"
+	"github.com/stretchr/testify/assert"
+	"golang.org/x/text/unicode/norm"
 )
 
 func TestHabariParser(t *testing.T) {
@@ -66,7 +67,7 @@ func TestSeanimeParserIsolated(t *testing.T) {
 	data := getData()
 	assert.NotNil(t, data)
 
-	filename := "The Case Study of Vanitas S01P01 1080p Dual Audio BDRip 10 bits DD x265-EMBER"
+	filename := "S01E001-S01E182"
 
 	for _, tt := range data {
 

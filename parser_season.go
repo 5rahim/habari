@@ -10,6 +10,7 @@ import (
 // e.g. S01E01, Season 1, S1, 1st Season, 1st Volume, 1st Part, 1st Season - 03, 1st Season - 03v2, 1st Season - 03' etc...
 func (p *parser) parseSeason() {
 
+tokensLoop:
 	for _, tkn := range *p.tokenManager.tokens {
 
 		if !tkn.isUnknown() { // Don't bother if token is already known
@@ -55,7 +56,8 @@ func (p *parser) parseSeason() {
 					}
 				}
 
-				continue // Skip to next token
+				//continue // Skip to next token
+				goto tokensLoop // Restart the loop to avoid reference issues
 			}
 
 			// Extract season and part
@@ -82,7 +84,8 @@ func (p *parser) parseSeason() {
 
 				p.tokenManager.tokens.overwriteAndInsertManyAt(p.tokenManager.tokens.getIndexOf(tkn), []*token{seasonPrefixTkn, seasonTkn, sepTkn, partTkn})
 
-				continue // Skip to next token
+				//continue // Skip to next token
+				goto tokensLoop // Restart the loop to avoid reference issues
 			}
 		}
 
@@ -160,6 +163,8 @@ func (p *parser) parseSeason() {
 							}
 						}
 
+						// DEVNOTE: Do not \/
+						//goto keywordLoop // Restart the loop to avoid reference issues
 					}
 
 				}
@@ -260,7 +265,9 @@ func (p *parser) parseSeason() {
 				}
 
 				p.tokenManager.tokens.overwriteAndInsertManyAt(p.tokenManager.tokens.getIndexOf(tkn), []*token{seasonTkn, sepTkn, episodeTkn})
-				continue // Skip to next token
+				//continue // Skip to next token
+
+				goto tokensLoop // Restart the loop to avoid reference issues
 			}
 		}
 

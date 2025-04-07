@@ -556,11 +556,19 @@ func (t *tokens) overwriteManyAt(index int, tkns []*token) {
 	*t = append((*t)[:index], append(tkns, (*t)[index+len(tkns):]...)...)
 }
 
+// Overwrite and insert many at
+//
+// Example:
+//
+//	// 01 02 03
+//	t.overwriteAndInsertManyAt(1, []*token{"04", "05"})
+//	// 01 04 05 03
 func (t *tokens) overwriteAndInsertManyAt(index int, tkns []*token) {
-	*t = append((*t)[:index], (*t)[index+1:]...)
-	// Then insert new elements at index
-	// append takes a slice and follows that with a variadic parameter hence the need for ...
-	*t = append((*t)[:index], append(tkns, (*t)[index:]...)...)
+	if index < 0 || index >= len(*t) {
+		return
+	}
+	*t = append((*t)[:index], (*t)[index+1:]...)                // remove the token at index
+	*t = append((*t)[:index], append(tkns, (*t)[index:]...)...) // insert the new tokens
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
