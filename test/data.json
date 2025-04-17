@@ -2940,7 +2940,8 @@
     "file_name": "[Erai-raws] Ryza no Atelier - Tokoyami no Joou to Himitsu no Kakurega - 12 [1080p][HEVC][Multiple Subtitle] [ENG][POR-BR].mkv",
     "formatted_title": "Ryza no Atelier - Tokoyami no Joou to Himitsu no Kakurega",
     "language": [
-      "ENG"
+      "ENG",
+      "POR-BR"
     ],
     "release_group": "Erai-raws",
     "title": "Ryza no Atelier - Tokoyami no Joou to Himitsu no Kakurega",
@@ -3209,6 +3210,56 @@
     "episode_number": [
       "001",
       "182"
+    ]
+  },
+  {
+    "file_name": "Lazarus S01E01 MULTi 1080p WEB x265 E-AC-3 -Tsundere-Raws (MAX) (VF, FRENCH, VOSTFR, Multi-Subs)",
+    "title": "Lazarus",
+    "formatted_title": "Lazarus",
+    "season_number": [
+      "01"
+    ],
+    "episode_number": [
+      "01"
+    ],
+    "episode_title": "MULTi",
+    "release_group": "MAX",
+    "video_resolution": "1080p",
+    "video_term": [
+      "x265"
+    ],
+    "audio_term": [
+      "E-AC-3"
+    ],
+    "subtitles": [
+      "VF",
+      "Multi-Subs"
+    ],
+    "language": [
+      "FRENCH",
+      "VOSTFR"
+    ]
+  },
+  {
+    "file_name": "[bri'ish] Lazarus - S01E01 (Channel 4 WEB-DL 1080p) | English Dub with CCs",
+    "title": "Lazarus",
+    "formatted_title": "Lazarus",
+    "season_number": [
+      "01"
+    ],
+    "episode_number": [
+      "01"
+    ],
+    "release_group": "bri'ish",
+    "video_resolution": "1080p",
+    "source": [
+      "WEB-DL"
+    ],
+    "subtitles": [
+      "Dub"
+    ],
+    "language": [
+      "English"
     ]
   }
 ]

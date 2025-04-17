@@ -67,7 +67,7 @@ func TestSeanimeParserIsolated(t *testing.T) {
 	data := getData()
 	assert.NotNil(t, data)
 
-	filename := "S01E001-S01E182"
+	filename := "[bri'ish] Lazarus - S01E01 (Channel 4 WEB-DL 1080p) | English Dub with CCs"
 
 	for _, tt := range data {
 

@@ -280,7 +280,7 @@ func newKeywordManager() *keywordManager {
 	km.addGroup(
 		keywordCatLanguage,
 		keywordKindStandalone,
-		[]string{"ENG", "ENGLISH", "ESPANOL", "JAP", "JP", "EN", "JPN", "FR", "PT-BR", "SPANISH", "VOSTFR", "ESP", "ITA", "RU", "CHT", "CHS", "CH"},
+		[]string{"ENG", "ENGLISH", "ESPANOL", "FRENCH", "JAP", "JP", "EN", "JPN", "FR", "PT-BR", "SPANISH", "VOSTFR", "ESP", "ITA", "RU", "CHT", "CHS", "CH", "POR", "GERMAN", "GER", "DEUTSCH", "RUSSIAN", "RUS"},
 	)
 
 	km.addGroupParts(
@@ -289,6 +289,8 @@ func newKeywordManager() *keywordManager {
 			{prefix: "PT", seqParts: []string{"-", "BR"}},
 			{prefix: "PT", seqParts: []string{".", "BR"}},
 			{prefix: "PT", seqParts: []string{" ", "BR"}},
+			{prefix: "POR", seqParts: []string{" ", "BR"}},
+			{prefix: "POR", seqParts: []string{"-", "BR"}},
 		},
 	)
 
@@ -304,7 +306,7 @@ func newKeywordManager() *keywordManager {
 	km.addGroup(
 		keywordCatSubtitles,
 		keywordKindStandalone,
-		[]string{"ASS", "BIG5", "DUB", "DUBBED", "HARDSUB", "HARDSUBS", "RAW",
+		[]string{"ASS", "BIG5", "DUB", "DUBBED", "HARDSUB", "HARDSUBS", "RAW", "VF",
 			"SOFTSUB", "SOFTSUBS", "SUB", "SUBBED", "SUBTITLED", "MULTISUB", "MULTIAUDIO"},
 	)
 
@@ -345,6 +347,8 @@ func newKeywordManager() *keywordManager {
 			{prefix: "DVD", seqParts: []string{" ", "RIP"}},
 			{prefix: "TV", seqParts: []string{"-", "RIP"}},
 			{prefix: "TV", seqParts: []string{" ", "RIP"}},
+			{prefix: "WEB", seqParts: []string{" ", "DL"}},
+			{prefix: "WEB", seqParts: []string{"-", "DL"}},
 		},
 	)
 
