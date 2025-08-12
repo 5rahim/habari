@@ -1,8 +1,9 @@
 package habari
 
 import (
-	"github.com/samber/lo"
 	"slices"
+
+	"github.com/samber/lo"
 )
 
 func (p *parser) parseEpisodeTitle() {
@@ -26,7 +27,7 @@ func (p *parser) parseEpisodeTitle() {
 
 	// Get all unknown tokens between the last episode number token and an opening bracket/file info metadata/EOF
 	// e.g. "... `01` -> "episode title" -| `[` ... ]
-	tkns, found := p.tokenManager.tokens.walkAndCollecIf(
+	tkns, found := p.tokenManager.tokens.walkAndCollectIf(
 		p.tokenManager.tokens.getIndexOf(lastEpTkn)+1,
 		func(tkn *token) bool {
 			// If all unknown tokens are NOT enclosed, then we don't want to collect an episode title that is enclosed
@@ -115,7 +116,7 @@ func (p *parser) parseTitleIfAllEnclosed() (foundTitle bool) {
 
 		// Get all unknown tokens between the two opening brackets
 		// e.g. `[` -> "anime" -> "title" ] -| `[` 01 ][ ... ]
-		tkns, found := p.tokenManager.tokens.walkAndCollecIf(
+		tkns, found := p.tokenManager.tokens.walkAndCollectIf(
 			p.tokenManager.tokens.getIndexOf(secondOpeningBracketTkn)+1,
 			func(tkn *token) bool {
 				return tkn.isUnknown() && !tkn.isKeyword() && !tkn.isSeparator()
@@ -154,7 +155,7 @@ func (p *parser) parseTitleIfAllEnclosed() (foundTitle bool) {
 
 		// Get all unknown tokens between the second and third opening brackets
 		// e.g. [ sub ] `[` -> "anime" -> "title" -> `]` [ ... ]
-		tkns, found := p.tokenManager.tokens.walkAndCollecIf(
+		tkns, found := p.tokenManager.tokens.walkAndCollectIf(
 			p.tokenManager.tokens.getIndexOf(openingBracketTkns[1])+1,
 			func(tkn *token) bool {
 				return tkn.isUnknown() && !tkn.isKeyword() && !tkn.isSeparator()
@@ -244,7 +245,7 @@ func (p *parser) parseTitle() {
 
 		// Collect all unknown tokens from the first non-enclosed token until an opening bracket or keyword is found
 		// e.g. "[ignored] collected collected [ignored]"
-		tkns, found := p.tokenManager.tokens.walkAndCollecIf(
+		tkns, found := p.tokenManager.tokens.walkAndCollectIf(
 			p.tokenManager.tokens.getIndexOf(nonEnclosedTkns[0]),
 			func(tkn *token) bool {
 				return !tkn.isEnclosed() && // not enclosed
@@ -256,7 +257,10 @@ func (p *parser) parseTitle() {
 				return (tkn.isOpeningBracket() && tkn.getValue() == "[") || tkn.isKeyword()
 			})
 		if !found {
-			break // Next try
+			// fix for single-word titles not being parsed if they don't come before a known keyword:
+			// no additional tokens found, continue
+			tkns = nonEnclosedTkns
+			found = true
 		}
 
 		// Title should not be after file info metadata like 1080p
@@ -300,7 +304,7 @@ func (p *parser) parseReleaseGroup() {
 		titleTkn := titleTkns[0]
 
 		// Get all unknown tokens before the title
-		unknownTkns, found := p.tokenManager.tokens.walkAndCollecIf(
+		unknownTkns, found := p.tokenManager.tokens.walkAndCollectIf(
 			0,
 			func(tkn *token) bool {
 				return tkn.isUnknown() && !tkn.isKeyword() && !tkn.isSeparator() && tkn.isEnclosed()
@@ -356,7 +360,7 @@ func (p *parser) parseReleaseGroup() {
 			}
 
 			// Get all tokens between the opening and closing brackets
-			unknownTkns, found := p.tokenManager.tokens.walkAndCollecIf(
+			unknownTkns, found := p.tokenManager.tokens.walkAndCollectIf(
 				p.tokenManager.tokens.getIndexOf(lastOpeningBracket)+1,
 				func(tkn *token) bool {
 					// Get all non-separator tokens

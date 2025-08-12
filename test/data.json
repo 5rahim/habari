@@ -57,6 +57,9 @@
       "01",
       "12"
     ],
+    "subtitles": [
+      "Multiple Subtitle"
+    ],
     "release_group": "Erai-raws",
     "release_information": [
       "BATCH"
@@ -2505,7 +2508,9 @@
     "video_resolution": "720p"
   },
   {
-    "file_name": "[Anime"
+    "file_name": "[Anime",
+    "title": "Anime",
+    "formatted_title": "Anime"
   },
   {
     "file_name": "Gekkan Shoujo Nozaki-kun [HorribleSubs] (1080p)",
@@ -2765,7 +2770,10 @@
     "formatted_title": "Great Pretender",
     "release_group": "Erai-raws",
     "title": "Great Pretender",
-    "video_resolution": "720p"
+    "video_resolution": "720p",
+    "subtitles": [
+      "Multiple Subtitle"
+    ]
   },
   {
     "episode_number": [
@@ -2781,7 +2789,10 @@
       "01"
     ],
     "title": "Blue Lock",
-    "video_resolution": "720p"
+    "video_resolution": "720p",
+    "subtitles": [
+      "Multiple Subtitle"
+    ]
   },
   {
     "episode_number": [
@@ -2806,6 +2817,9 @@
     "title": "Blue Lock",
     "release_version": [
       "2"
+    ],
+    "subtitles": [
+      "Multiple Subtitle"
     ]
   },
   {
@@ -2948,6 +2962,9 @@
     "video_resolution": "1080p",
     "video_term": [
       "HEVC"
+    ],
+    "subtitles": [
+      "Multiple Subtitle"
     ]
   },
   {
@@ -3261,5 +3278,21 @@
     "language": [
       "English"
     ]
+  },
+  {
+    "file_name": "[Seanime] Lazarus",
+    "title": "Lazarus",
+    "formatted_title": "Lazarus",
+    "release_group": "Seanime"
+  },
+  {
+    "file_name": "Lazarus",
+    "title": "Lazarus",
+    "formatted_title": "Lazarus"
+  },
+  {
+    "file_name": "Bake monogatari",
+    "title": "Bake monogatari",
+    "formatted_title": "Bake monogatari"
   }
 ]

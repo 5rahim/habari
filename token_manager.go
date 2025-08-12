@@ -455,12 +455,13 @@ func (t *tokens) collectUntil(start int, pred func(tkn *token) bool) ([]*token, 
 	return collec, true
 }
 
-// walkAndCollecIf collects tokens that satisfy `pred` until `stopIf` returns true
+// walkAndCollectIf collects tokens that satisfy `pred` until `stopIf`, returns true.
+// Will return false if nothing was collected.
 //
 // Example: Walk until the end
 //
-//	tkns, found := walkAndCollecIf(0, func(tkn){ return tkn.isUnknown() }, func(tkn) { return false })
-func (t *tokens) walkAndCollecIf(start int, pred func(tkn *token) bool, stopIf func(tkn *token) bool) ([]*token, bool) {
+//	tkns, found := walkAndCollectIf(0, func(tkn){ return tkn.isUnknown() }, func(tkn) { return false })
+func (t *tokens) walkAndCollectIf(start int, pred func(tkn *token) bool, stopIf func(tkn *token) bool) ([]*token, bool) {
 	if start+1 > len(*t)-1 {
 		return nil, false
 	}
