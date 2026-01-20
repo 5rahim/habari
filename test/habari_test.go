@@ -67,7 +67,7 @@ func TestSeanimeParserIsolated(t *testing.T) {
 	data := getData()
 	assert.NotNil(t, data)
 
-	filename := "Lazarus"
+	filename := "Jujutsu Kaisen S03E02 One More Time 1080p NF WEB-DL AAC2.0 H 264-VARYG (Jujutsu Kaisen: Shimetsu Kaiyuu - Zenpen, Multi-Subs)"
 
 	for _, tt := range data {
 

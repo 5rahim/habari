@@ -407,15 +407,45 @@ func (p *parser) parseReleaseGroup() {
 			break // Next try
 		}
 
-		unknownTkn := unknownTkns[0]
-		if len(unknownTkns) > 1 {
-			unknownTkn = unknownTkns[len(unknownTkns)-1]
+		// Filter out tokens inside parentheses (they're usually extra info, not release groups)
+		// e.g. "...-VARYG_(Extra_Info)" - we want VARYG, not Extra
+
+		allEnclosed := true
+		for _, tkn := range unknownTkns {
+			if !tkn.isEnclosed() {
+				allEnclosed = false
+				break
+			}
+		}
+
+		candidateTkns := lo.Filter(unknownTkns, func(tkn *token, _ int) bool {
+			if allEnclosed {
+				return true
+			}
+			return !tkn.isEnclosed()
+		})
+
+		if len(candidateTkns) == 0 {
+			candidateTkns = unknownTkns
+		}
+
+		unknownTkn := candidateTkns[0]
+		if len(candidateTkns) > 1 {
+			unknownTkn = candidateTkns[len(candidateTkns)-1]
 		}
 
 		if p.tokenManager.tokens.isTokenInFirstHalf(unknownTkn) {
 			break
 		}
 
+		// Take all tokens before `unknownTkn` that are connected with a dash
+		tkns, found, _ := p.tokenManager.tokens.getCategorySequenceBeforeInc(p.tokenManager.tokens.getIndexOf(unknownTkn), []tokenCategory{tokenCatUnknown, tokenCatSeparator, tokenCatUnknown}, false)
+		if found && len(tkns) == 3 && !tkns[0].isKeyword() && !tkns[2].isKeyword() {
+			slices.Reverse(tkns)
+			// Combine release group parts
+			p.tokenManager.tokens.combineTitle(tkns[0], tkns[len(tkns)-1], metadataReleaseGroup)
+			return
+		}
 		// Found release group
 		unknownTkn.setMetadataCategory(metadataReleaseGroup)
 		return

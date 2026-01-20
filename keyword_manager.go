@@ -185,6 +185,8 @@ func newKeywordManager() *keywordManager {
 	km.addGroupParts(
 		keywordCatAudioTerm,
 		[]*keywordParts{
+			{prefix: "AAC2", seqParts: []string{".", "0"}},                  // AAC2.0
+			{prefix: "AAC2", seqParts: []string{".", "0CH"}},                // AAC2.0CH
 			{prefix: "2", seqParts: []string{".", "0CH"}},                   // 2.0CH
 			{prefix: "5", seqParts: []string{".", "1"}},                     // 5.1
 			{prefix: "5", seqParts: []string{".", "1", "+", "2", ".", "0"}}, // 5.1
@@ -202,6 +204,8 @@ func newKeywordManager() *keywordManager {
 			{prefix: "MULTI", seqParts: []string{" ", "AUDIO"}},             // DUAL AUDIO
 			{prefix: "DD2", seqParts: []string{".", "0"}},                   // DD2.0
 			{prefix: "E", seqParts: []string{"-", "AC", "-", "3"}},          // E-AC-3
+			{prefix: "E", seqParts: []string{"-", "AC3"}},                   // E-AC3
+			{prefix: "EAC", seqParts: []string{"-", "3"}},                   // EAC-3
 		},
 	)
 
@@ -360,6 +364,8 @@ func newKeywordManager() *keywordManager {
 			{prefix: "TV", seqParts: []string{" ", "RIP"}},
 			{prefix: "WEB", seqParts: []string{" ", "DL"}},
 			{prefix: "WEB", seqParts: []string{"-", "DL"}},
+			{prefix: "WEB", seqParts: []string{" ", "RIP"}},
+			{prefix: "WEB", seqParts: []string{"-", "RIP"}},
 		},
 	)
 

@@ -2916,7 +2916,7 @@
       "AV1"
     ],
     "audio_term": [
-      "AC3"
+      "E-AC3"
     ],
     "subtitles": [
       "Multi Subs"
@@ -3240,7 +3240,7 @@
       "01"
     ],
     "episode_title": "MULTi",
-    "release_group": "MAX",
+    "release_group": "Tsundere-Raws",
     "video_resolution": "1080p",
     "video_term": [
       "x265"
@@ -3277,6 +3277,32 @@
     ],
     "language": [
       "English"
+    ]
+  },
+  {
+    "file_name": "Jujutsu Kaisen S03E02 One More Time 1080p NF WEB-DL AAC2.0 H 264-VARYG (Jujutsu Kaisen: Shimetsu Kaiyuu - Zenpen, Multi-Subs)",
+    "title": "Jujutsu Kaisen",
+    "formatted_title": "Jujutsu Kaisen",
+    "episode_title": "One More Time",
+    "season_number": [
+      "03"
+    ],
+    "episode_number": [
+      "02"
+    ],
+    "release_group": "VARYG",
+    "video_resolution": "1080p",
+    "source": [
+      "WEB-DL"
+    ],
+    "audio_term": [
+      "AAC2.0"
+    ],
+    "video_term": [
+      "H 264"
+    ],
+    "subtitles": [
+      "Multi-Subs"
     ]
   },
   {
