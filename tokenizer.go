@@ -2,8 +2,9 @@ package habari
 
 import (
 	"bytes"
-	"github.com/samber/lo"
 	"slices"
+
+	"github.com/samber/lo"
 )
 
 var brackets = [][]rune{
@@ -18,6 +19,15 @@ var brackets = [][]rune{
 var separators = []rune{'-', '+', '~', '&', '\u2010', '\u2011', '\u2012', '\u2013', '\u2014', '\u2015'}
 var delimiters = []rune{' ', '_', '.', '|', ','}
 
+// normalizeFullWidth converts full-width characters to their ASCII equivalents
+func normalizeFullWidth(r rune) rune {
+	// Full-width ASCII variants (U+FF01 to U+FF5E) map to ASCII (U+0021 to U+007E)
+	if r >= 0xFF01 && r <= 0xFF5E {
+		return r - 0xFEE0
+	}
+	return r
+}
+
 // tokenize
 //
 // "[hello] world" -> "[", "hello", "]", " ", "world"
@@ -31,8 +41,11 @@ func tokenize(filename string) []*token {
 		unknown        rune
 	}
 
-	// Get all runes
+	// Get all runes and normalize full-width characters
 	runes := []rune(filename)
+	for i, r := range runes {
+		runes[i] = normalizeFullWidth(r)
+	}
 
 	runeVars := make([]*runeVal, 0)
 

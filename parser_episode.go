@@ -22,7 +22,8 @@ func (p *parser) parseEpisode() {
 
 	// Check combined or separated keywords other than season prefixes
 	// e.g. Ep1, ED1, ED 1, OVAs 1-3, OVAs 1 ~ 3, OVA1, OVA 1v2
-	if found := p.parseKeywordsWithEpisodes(); found {
+	// Prioritize non-enclosed keywords first
+	if found := p.parseKeywordsWithEpisodes(false); found {
 		return // Stop if an episode number (e.g. Ep1) is found, not an OVA, ED, OP, ...
 	}
 
@@ -35,6 +36,11 @@ func (p *parser) parseEpisode() {
 	// e.g. Title - 01
 	if found := p.parseEpisodeBySearching(false); found {
 		return // Stop if an episode number is found
+	}
+
+	// Check enclosed keywords
+	if found := p.parseKeywordsWithEpisodes(true); found {
+		return // Stop if an episode number (e.g. Ep1) is found, not an OVA, ED, OP, ...
 	}
 
 	// e.g. [12]
@@ -353,12 +359,19 @@ func (p *parser) parseEpisodeBySearching(aggressive bool) bool {
 // e.g. Ep1, ED1, ED 1, OVAs 1-3, OVAs 1 ~ 3, OVA1, OVA 1v2
 //
 // "foundEpisode" is set to true if an actual episode number is found. (not an OVA, ED, OP, ...)
-func (p *parser) parseKeywordsWithEpisodes() (foundEpisode bool) {
+func (p *parser) parseKeywordsWithEpisodes(processEnclosed bool) (foundEpisode bool) {
 
 	for _, tkn := range *p.tokenManager.tokens {
 
 		if tkn.isKeyword() || !tkn.isUnknown() { // Don't bother if token is already a keyword
 			continue // Skip to next token
+		}
+
+		if processEnclosed && !tkn.isEnclosed() {
+			continue
+		}
+		if !processEnclosed && tkn.isEnclosed() {
+			continue
 		}
 
 		keywords, found := p.tokenManager.keywordManager.findKeywordsBy(func(kw *keyword) bool {

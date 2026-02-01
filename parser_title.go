@@ -61,10 +61,10 @@ func (p *parser) parseEpisodeTitle() {
 
 	// If the episode title is between parentheses, then consider it a ReleaseGroup
 	// TODO fix, might lead to false positives
-	_newTkn := p.tokenManager.tokens.getFromUUID(tkns[0].UUID)
-	if p.tokenManager.tokens.isBetweenParentheses(_newTkn) {
-		_newTkn.setMetadataCategory(metadataReleaseGroup)
-	}
+	//_newTkn := p.tokenManager.tokens.getFromUUID(tkns[0].UUID)
+	//if p.tokenManager.tokens.isBetweenParentheses(_newTkn) {
+	//	_newTkn.setMetadataCategory(metadataReleaseGroup)
+	//}
 
 	return
 
