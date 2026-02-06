@@ -272,7 +272,7 @@ func (p *parser) parseEpisodeBySearching(aggressive bool) bool {
 			if tkn.isYear() {
 				continue
 			}
-			if tkn.isNumberOrLikeKind() && tkn.isUnknown() {
+			if tkn.isNumberOrLikeKind() && tkn.isUnknown() && !tkn.isIdentifiedKeyword() {
 				lastNumTkn = tkn
 				count++
 			}

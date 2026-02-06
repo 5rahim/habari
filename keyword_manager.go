@@ -174,17 +174,18 @@ func newKeywordManager() *keywordManager {
 		keywordCatAudioTerm,
 		keywordKindStandalone,
 		[]string{
-			"2CH", "DTS", "DTS-ES", "DTS5.1", "TRUEHD5.1", "5.1", "2.0",
+			"2CH", "DTS", "DTS-ES", "DTS5.1", "TRUEHD5.1", "5.1", "2.0", "7.1",
 			"AAC", "AACX2", "AACX3", "AACX4", "AC3", "EAC3", "E-AC-3", "FLAC",
-			"FLACX2", "FLACX3", "FLACX4", "LOSSLESS", "MP3", "OGG", "VORBIS",
+			"FLACX2", "FLACX3", "FLACX4", "LOSSLESS", "MP3", "OGG", "VORBIS", "OPUS",
 			"DD2", "DD2.0", "DDP", "DD", "HDMA", "DTSHD",
-			"DUALAUDIO", "DUAL-AUDIO", "MULTIAUDIO",
+			"DUALAUDIO", "DUAL-AUDIO", "MULTIAUDIO", "PCM",
 		},
 	)
 
 	km.addGroupParts(
 		keywordCatAudioTerm,
 		[]*keywordParts{
+			{prefix: "AAC", seqParts: []string{" ", "2", ".", "0"}},         // AAC 2.0
 			{prefix: "AAC2", seqParts: []string{".", "0"}},                  // AAC2.0
 			{prefix: "AAC2", seqParts: []string{".", "0CH"}},                // AAC2.0CH
 			{prefix: "2", seqParts: []string{".", "0CH"}},                   // 2.0CH
@@ -222,7 +223,7 @@ func newKeywordManager() *keywordManager {
 			"HI10", "HI10P", "HI444", "HI444P", "HI444PP",
 			"H264", "H265", "X264", "X265",
 			"AVC", "HEVC", "HEVC2", "DIVX", "DIVX5", "DIVX6", "XVID",
-			"AV1",
+			"AV1", "VP9",
 			"HDR", "DV",
 			// Video format
 			"AVI", "RMVB", "WMV", "WMV3", "WMV9",
@@ -349,7 +350,7 @@ func newKeywordManager() *keywordManager {
 		[]string{"BD", "ASF", "BDRIP", "BLURAY", "BLU-RAY", "DVD", "DVD5", "DVD9",
 			"DVD-R2J", "DVDRIP", "DVD-RIP", "R2DVD", "R2J", "R2JDVD",
 			"R2JDVDRIP", "HDTV", "HDTVRIP", "TVRIP", "TV-RIP",
-			"WEBCAST", "WEBRIP"},
+			"WEBCAST", "WEBRIP", "NF", "NHK", "CR", "HIDIVE", "AMZN", "AT-X", "MX", "DSNP"},
 	)
 
 	km.addGroupParts(

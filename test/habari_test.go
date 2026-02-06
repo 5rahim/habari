@@ -67,7 +67,7 @@ func TestSeanimeParserIsolated(t *testing.T) {
 	data := getData()
 	assert.NotNil(t, data)
 
-	filename := "【MMZYSUB】★【Golden Time】[24（END）][GB][720P_MP4]"
+	filename := "05 - Episode title [1080p x264 8bit AAC 2.0].mkv"
 
 	for _, tt := range data {
 
@@ -120,6 +120,13 @@ func assertMetadataEquals(t *testing.T, received interface{}, expected interface
 		} else {
 			assert.Failf(t, "Expected %s to be nil but got %s", kind, received)
 		}
+	}
+
+	switch expected.(type) {
+	case []string:
+		receivedStrings := received.([]string)
+		assert.ElementsMatchf(t, expected.([]string), receivedStrings, "Expected %s to be %s but got %s", kind, expected, received)
+		return
 	}
 
 	assert.Equalf(t, expected, received, "Expected %s to be %s but got %s", kind, expected, received)

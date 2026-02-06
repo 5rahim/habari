@@ -2453,11 +2453,14 @@
       "01"
     ],
     "file_extension": "mkv",
-    "file_name": "[FaggotryRaws] Bakuman - 01 (NHK E 848x480).mkv",
+    "file_name": "[CigaretteRaws] Bakuman - 01 (NHK E 848x480).mkv",
     "formatted_title": "Bakuman",
-    "release_group": "FaggotryRaws",
+    "release_group": "CigaretteRaws",
     "title": "Bakuman",
-    "video_resolution": "848x480"
+    "video_resolution": "848x480",
+    "source": [
+      "NHK"
+    ]
   },
   {
     "part_number": [
@@ -2849,6 +2852,23 @@
     ],
     "episode_title": "Episode title",
     "file_extension": "mkv",
+    "file_name": "05 - Episode title [1080p x264 8bit AAC 2.0].mkv",
+    "video_resolution": "1080p",
+    "video_term": [
+      "x264",
+      "8bit"
+    ],
+    "audio_term": [
+      "AAC",
+      "2.0"
+    ]
+  },
+  {
+    "episode_number": [
+      "05"
+    ],
+    "episode_title": "Episode title",
+    "file_extension": "mkv",
     "file_name": "S01E05 - Episode title.mkv",
     "season_number": [
       "01"
@@ -3011,7 +3031,8 @@
   {
     "year": "2012",
     "audio_term": [
-      "Dual-Audio"
+      "Dual-Audio",
+      "OPUS"
     ],
     "file_name": "Hyouka (2012) [Season 1+OVA] [BD 1080p HEVC OPUS] [Dual-Audio]",
     "formatted_title": "Hyouka (2012)",
@@ -3028,13 +3049,13 @@
     "video_resolution": "1080p",
     "video_term": [
       "HEVC"
-    ],
-    "release_group": "OPUS"
+    ]
   },
   {
     "year": "2012",
     "audio_term": [
-      "Dual-Audio"
+      "Dual-Audio",
+      "OPUS"
     ],
     "file_name": "Hyouka (2012) S1-2 [BD 1080p HEVC OPUS] [Dual-Audio]",
     "formatted_title": "Hyouka (2012)",
@@ -3049,8 +3070,7 @@
     "video_resolution": "1080p",
     "video_term": [
       "HEVC"
-    ],
-    "release_group": "OPUS"
+    ]
   },
   {
     "file_name": "Zom 100 Zombie ni Naru Made ni Shitai 100 no Koto",
@@ -3293,7 +3313,8 @@
     "release_group": "VARYG",
     "video_resolution": "1080p",
     "source": [
-      "WEB-DL"
+      "WEB-DL",
+      "NF"
     ],
     "audio_term": [
       "AAC2.0"

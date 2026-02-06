@@ -87,6 +87,13 @@ func (t *token) isKeywordCategory(c keywordCategory) bool {
 	return t.IdentifiedKeywordCategory == c
 }
 
+func (t *token) isIdentifiedKeyword() bool {
+	if t == nil {
+		return false
+	}
+	return t.IdentifiedKeywordCategory != keywordCatNone
+}
+
 func (t *token) isKind(kind tokenKind) bool {
 	if t == nil {
 		return false
