@@ -1,8 +1,9 @@
 package habari
 
 import (
-	"github.com/samber/lo"
 	"strings"
+
+	"github.com/samber/lo"
 )
 
 type parser struct {
@@ -150,7 +151,7 @@ func (p *parser) identifyKeyword(tkn *token, priority string) bool {
 			}
 
 			// when the priority is "normal", we only want to identify STANDALONE keywords that are not ambiguous
-			// e.g. Do not flag "Ita" as a keyword in "Bokura Ga Ita"
+			// e.g. Do not flag "Ita" as a keyword in "Bokura Ga Ita", or "Final" as a keyword in "Boku no Hero FINAL SEASON"
 			if priority == "normal" && p.tokenManager.keywordManager.isKeywordAmbiguous(keyword) {
 				return false
 			}

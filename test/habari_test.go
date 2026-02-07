@@ -3,7 +3,6 @@ package habari
 import (
 	"bytes"
 	"encoding/json"
-	"io/ioutil"
 	"log"
 	"os"
 	"strconv"
@@ -67,7 +66,7 @@ func TestSeanimeParserIsolated(t *testing.T) {
 	data := getData()
 	assert.NotNil(t, data)
 
-	filename := "05 - Episode title [1080p x264 8bit AAC 2.0].mkv"
+	filename := "[Judas] One Punch Man - S01SP02"
 
 	for _, tt := range data {
 
@@ -159,7 +158,7 @@ func removeNonLatin(s string) string {
 }
 
 func TestConversion(t *testing.T) {
-	jsonFile, err := ioutil.ReadFile("./to_convert.json")
+	jsonFile, err := os.ReadFile("./to_convert.json")
 	if err != nil {
 		panic(err)
 	}
@@ -206,7 +205,7 @@ func TestConversion(t *testing.T) {
 
 	timestamp := strconv.FormatInt(time.Now().Unix(), 10)
 	newFilePath := "./converted-" + timestamp + ".json"
-	err = ioutil.WriteFile(newFilePath, buf.Bytes(), 0644)
+	err = os.WriteFile(newFilePath, buf.Bytes(), 0644)
 	if err != nil {
 		panic(err)
 	}

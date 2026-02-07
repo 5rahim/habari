@@ -31,7 +31,15 @@ tokensLoop:
 
 				sepTkn := newToken(sep)
 				sepTkn.setIdentifiedKeywordCategory(keywordCatEpisodePrefix, keywordKindCombinedWithNumber)
-				sepTkn.setKind(tokenKindCharacter)
+				if len(sepTkn.getValue()) == 1 {
+					sepTkn.setKind(tokenKindCharacter)
+				} else {
+					sepTkn.setKind(tokenKindWord)
+				}
+
+				if sepTkn.getNormalizedValue() == "SP" || sepTkn.getNormalizedValue() == "OVA" || sepTkn.getNormalizedValue() == "ONA" || sepTkn.getNormalizedValue() == "OAD" {
+					sepTkn.setMetadataCategory(metadataAnimeType)
+				}
 
 				episodeTkn := newToken(episode)
 				episodeTkn.setMetadataCategory(metadataEpisodeNumber)
@@ -270,6 +278,38 @@ tokensLoop:
 				goto tokensLoop // Restart the loop to avoid reference issues
 			}
 		}
+
+		// Parse S01OVA01
+		//if (strings.Contains(tkn.getNormalizedValue(), "OVA") || strings.Contains(tkn.getNormalizedValue(), "SP")) && len(tkn.getValue()) > 4 {
+		//	// Extract season and episode
+		//	if season, sep, episode, ok := extractSeasonAndEpisode(tkn.getValue()); ok {
+		//		if len(season) > 2 {
+		//			continue // Skip to next token
+		//		}
+		//
+		//		seasonTkn := newToken(season)
+		//		seasonTkn.setMetadataCategory(metadataSeason)
+		//		seasonTkn.setKind(tokenKindNumber)
+		//
+		//		sepTkn := newToken(sep)
+		//		sepTkn.setIdentifiedKeywordCategory(keywordCatAnimeType, keywordKindCombinedWithNumber)
+		//		sepTkn.setKind(tokenKindWord)
+		//		sepTkn.setMetadataCategory(metadataAnimeType) // OVA and SP are anime types
+		//
+		//		episodeTkn := newToken(episode)
+		//		episodeTkn.setMetadataCategory(metadataEpisodeNumber)
+		//		if isNumber(episode) {
+		//			episodeTkn.setKind(tokenKindNumber)
+		//		} else {
+		//			episodeTkn.setKind(tokenKindNumberLike)
+		//		}
+		//
+		//		p.tokenManager.tokens.overwriteAndInsertManyAt(p.tokenManager.tokens.getIndexOf(tkn), []*token{seasonTkn, sepTkn, episodeTkn})
+		//		//continue // Skip to next token
+		//
+		//		goto tokensLoop // Restart the loop to avoid reference issues
+		//	}
+		//}
 
 	}
 

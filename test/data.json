@@ -3357,5 +3357,55 @@
     "subtitles": [
       "Softsubs"
     ]
+  },
+  {
+    "file_name": "[Judas] One Punch Man - S01OVA02",
+    "title": "One Punch Man",
+    "formatted_title": "One Punch Man",
+    "release_group": "Judas",
+    "season_number": [
+      "01"
+    ],
+    "anime_type": [
+      "OVA"
+    ],
+    "episode_number": [
+      "02"
+    ]
+  },
+  {
+    "file_name": "[Judas] One Punch Man - S01 OVA 02",
+    "title": "One Punch Man",
+    "formatted_title": "One Punch Man",
+    "release_group": "Judas",
+    "season_number": [
+      "01"
+    ],
+    "anime_type": [
+      "OVA"
+    ],
+    "episode_number": [
+      "02"
+    ]
+  },
+  {
+    "file_name": "[Judas] One Punch Man - S01SP02",
+    "title": "One Punch Man",
+    "formatted_title": "One Punch Man",
+    "release_group": "Judas",
+    "season_number": [
+      "01"
+    ],
+    "anime_type": [
+      "SP"
+    ],
+    "episode_number": [
+      "02"
+    ]
+  },
+  {
+    "file_name": "Boku no Hero Academia FINAL SEASON",
+    "title": "Boku no Hero Academia FINAL SEASON",
+    "formatted_title": "Boku no Hero Academia FINAL SEASON"
   }
 ]

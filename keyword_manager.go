@@ -68,7 +68,7 @@ func newKeywordManager() *keywordManager {
 	// The parser will treat these keywords as standalone ambiguous tokens and will not attempt to identify them if
 	// they are found in the first half of the filename.
 	km.ambiguousKeywords = []string{
-		"SP", "ANDROID", "ITA", "ESP", "FR", "JP", "EN", "RU", "CH",
+		"SP", "ANDROID", "ITA", "ESP", "FR", "JP", "EN", "RU", "CH", "FINAL",
 	}
 
 	// Season

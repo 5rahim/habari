@@ -7,7 +7,7 @@ import (
 )
 
 func extractSeasonAndEpisode(input string) (season string, separator string, episode string, ok bool) {
-	re := regexp.MustCompile(`(?i)^(s?)(\d+)(e|x|ep)((\d+)('|([vV]\d{1,2}))?)$`)
+	re := regexp.MustCompile(`(?i)^(s?)(\d+)(e|x|ep|ova|oad|sp)((\d+)('|([vV]\d{1,2}))?)$`)
 
 	captures := re.FindStringSubmatch(input)
 

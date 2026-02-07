@@ -1,2 +1,4 @@
 .idea
 .env
+js/main.go
+Makefile
