@@ -3407,5 +3407,82 @@
     "file_name": "Boku no Hero Academia FINAL SEASON",
     "title": "Boku no Hero Academia FINAL SEASON",
     "formatted_title": "Boku no Hero Academia FINAL SEASON"
+  },
+  {
+    "file_name": "[Karma] Macross Delta - OP1c (BDRip 1080p FLAC)",
+    "title": "Macross Delta",
+    "formatted_title": "Macross Delta",
+    "anime_type": [
+      "OP"
+    ],
+    "episode_number": [
+      "1"
+    ],
+    "release_version": [
+      "c"
+    ],
+    "video_resolution": "1080p",
+    "release_group": "Karma",
+    "source": [
+      "BDRip"
+    ],
+    "audio_term": [
+      "FLAC"
+    ]
+  },
+  {
+    "file_name": "[ShowY] Gotoubun no Hanayome - 09 Legend of Fate Day 1 [83243654].mkv",
+    "title": "Gotoubun no Hanayome",
+    "formatted_title": "Gotoubun no Hanayome",
+    "episode_number": [
+      "09"
+    ],
+    "episode_title": "Legend of Fate Day 1",
+    "release_group": "ShowY",
+    "file_checksum": "83243654",
+    "file_extension": "mkv"
+  },
+  {
+    "file_name": "[ShowY] Gotoubun no Hanayome - 09 Legend of Fate Day [83243654].mkv",
+    "title": "Gotoubun no Hanayome",
+    "formatted_title": "Gotoubun no Hanayome",
+    "episode_number": [
+      "09"
+    ],
+    "episode_title": "Legend of Fate Day",
+    "release_group": "ShowY",
+    "file_checksum": "83243654",
+    "file_extension": "mkv"
+  },
+  {
+    "file_name": "[TardSubs] Nihon Animator Mihonichi 01 - The Dragon Dentist (BD 1080p) [A7A5BCFD].mkv",
+    "title": "Nihon Animator Mihonichi",
+    "formatted_title": "Nihon Animator Mihonichi",
+    "episode_title": "The Dragon Dentist",
+    "video_resolution": "1080p",
+    "episode_number": [
+      "01"
+    ],
+    "source": [
+      "BD"
+    ],
+    "file_checksum": "A7A5BCFD",
+    "file_extension": "mkv",
+    "release_group": "TardSubs"
+  },
+  {
+    "file_name": "[TardSubs] Nihon Animator Mihonichi 01 (BD 1080p) [A7A5BCFD].mkv",
+    "title": "Nihon Animator Mihonichi",
+    "formatted_title": "Nihon Animator Mihonichi",
+    "video_resolution": "1080p",
+    "episode_number": [
+      "01"
+    ],
+    "source": [
+      "BD"
+    ],
+    "file_checksum": "A7A5BCFD",
+    "file_extension": "mkv",
+    "release_group": "TardSubs"
   }
 ]

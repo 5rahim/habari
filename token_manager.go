@@ -500,6 +500,38 @@ func (t *tokens) walkBackAndCollecIf(start int, pred func(tkn *token) bool, stop
 	return collec, true
 }
 
+// isBetweenUnknownTokensSD checks if the specified token is between a certain number of unknown tokens on both sides, ignoring delimiters and separators.
+//
+// Example:
+//
+//	tkns := []*token{"a", "b", "03", "c", "d"}
+//	tkn := tkns[2]
+//	isBetweenUnknownTokensSD(tkn, 1, 2) // true
+//	isBetweenUnknownTokensSD(tkn, 1, 3) // false, there's only 2 unknown tokens on the right, not 3
+func (t *tokens) isBetweenUnknownTokensSD(tkn *token, nbLeft, nbRight int) bool {
+	if nbLeft > 0 {
+		leftCats := make([]tokenCategory, nbLeft)
+		for i := 0; i < nbLeft; i++ {
+			leftCats[i] = tokenCatUnknown
+		}
+		_, found, _ := t.getCategorySequenceBefore(t.getIndexOf(tkn), leftCats, true, true)
+		if !found {
+			return false
+		}
+	}
+	if nbRight > 0 {
+		rightCats := make([]tokenCategory, nbRight)
+		for i := 0; i < nbRight; i++ {
+			rightCats[i] = tokenCatUnknown
+		}
+		_, found, _ := t.getCategorySequenceAfter(t.getIndexOf(tkn), rightCats, true, true)
+		if !found {
+			return false
+		}
+	}
+	return true
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 func (t *tokens) setTokens(tkns []*token) {
@@ -698,7 +730,7 @@ func (t *tokens) getFirstOccurrenceBefore(start int, pred func(tkn *token) bool)
 // getCategorySequenceAfter returns the sequence of tokens in the given categories after the specified start index,
 // along with a boolean indicating if the sequence was found.
 // The skipDelimiters parameter determines whether to skip delimiter tokens when collecting the sequence.
-func (t *tokens) getCategorySequenceAfter(start int, categories []tokenCategory, skipDelimiters bool) ([]*token, bool, int) {
+func (t *tokens) getCategorySequenceAfter(start int, categories []tokenCategory, skipDelimiters bool, skipSeparators ...bool) ([]*token, bool, int) {
 	if start < 0 {
 		start = -1
 	}
@@ -718,6 +750,10 @@ func (t *tokens) getCategorySequenceAfter(start int, categories []tokenCategory,
 			nbSkipped += 1
 			continue
 		}
+		if len(skipSeparators) > 0 && skipSeparators[0] && (*t)[i].isSeparator() {
+			nbSkipped += 1
+			continue
+		}
 		if (*t)[i].isCategory(categories[cursor]) {
 			collec = append(collec, (*t)[i])
 			cursor++
@@ -733,14 +769,14 @@ func (t *tokens) getCategorySequenceAfter(start int, categories []tokenCategory,
 	return []*token{}, false, 0
 }
 
-func (t *tokens) getCategorySequenceAfterInc(start int, categories []tokenCategory, skipDelimiters bool) ([]*token, bool, int) {
-	return t.getCategorySequenceAfter(start-1, categories, skipDelimiters)
+func (t *tokens) getCategorySequenceAfterInc(start int, categories []tokenCategory, skipDelimiters bool, skipSeparators ...bool) ([]*token, bool, int) {
+	return t.getCategorySequenceAfter(start-1, categories, skipDelimiters, skipSeparators...)
 }
 
 // getCategorySequenceBefore returns the sequence of tokens in the given categories before the specified start index,
 // along with a boolean indicating if the sequence was found.
 // The skipDelimiters parameter determines whether to skip delimiter tokens when collecting the sequence.
-func (t *tokens) getCategorySequenceBefore(start int, categories []tokenCategory, skipDelimiters bool) ([]*token, bool, int) {
+func (t *tokens) getCategorySequenceBefore(start int, categories []tokenCategory, skipDelimiters bool, skipSeparators ...bool) ([]*token, bool, int) {
 	if start > len(*t) {
 		start = len(*t) + 1
 	}
@@ -760,6 +796,10 @@ func (t *tokens) getCategorySequenceBefore(start int, categories []tokenCategory
 			nbSkipped += 1
 			continue
 		}
+		if len(skipSeparators) > 0 && skipSeparators[0] && (*t)[i].isSeparator() {
+			nbSkipped += 1
+			continue
+		}
 		if (*t)[i].isCategory(categories[cursor]) {
 			collec = append(collec, (*t)[i])
 			cursor++
@@ -775,8 +815,8 @@ func (t *tokens) getCategorySequenceBefore(start int, categories []tokenCategory
 	return []*token{}, false, 0
 }
 
-func (t *tokens) getCategorySequenceBeforeInc(start int, categories []tokenCategory, skipDelimiters bool) ([]*token, bool, int) {
-	return t.getCategorySequenceBefore(start+1, categories, skipDelimiters)
+func (t *tokens) getCategorySequenceBeforeInc(start int, categories []tokenCategory, skipDelimiters bool, skipSeparators ...bool) ([]*token, bool, int) {
+	return t.getCategorySequenceBefore(start+1, categories, skipDelimiters, skipSeparators...)
 }
 
 func (t *tokens) iterate(iterationFunc func(tkn *token, idx int)) {

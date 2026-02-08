@@ -273,6 +273,15 @@ func (p *parser) parseEpisodeBySearching(aggressive bool) bool {
 				continue
 			}
 			if tkn.isNumberOrLikeKind() && tkn.isUnknown() && !tkn.isIdentifiedKeyword() {
+				if tkn.isNumberKind() {
+					intVal, err := strconv.Atoi(tkn.getValue())
+					if err != nil {
+						continue
+					}
+					if intVal < 10 && !isNumberZeroPadded(tkn.getValue()) {
+						continue
+					}
+				}
 				lastNumTkn = tkn
 				count++
 			}
@@ -308,9 +317,23 @@ func (p *parser) parseEpisodeBySearching(aggressive bool) bool {
 			if count > 1 {
 				break
 			}
+			shouldContinue := true
+			// if there is a dash separator after the number e.g. "01 -",
+			// check that it's contextually relevant
 			if p.tokenManager.tokens.foundDashSeparatorAfter(lastNumTkn) && !p.tokenManager.tokens.isFirstToken(lastNumTkn) {
+				// if it's not of this format "01 - Episode title"
+				// then check it's between some unknown tokens, e.g. "Anime 01 - Episode title"
+				if p.tokenManager.tokens.isBetweenUnknownTokensSD(lastNumTkn, 2, 2) {
+					shouldContinue = true
+				} else {
+					shouldContinue = false
+				}
+			}
+
+			if !shouldContinue {
 				break
 			}
+
 			if lastNumTkn.isNumberKind() {
 				intVal, err := strconv.Atoi(lastNumTkn.getValue())
 				if err != nil {

@@ -66,7 +66,7 @@ func TestSeanimeParserIsolated(t *testing.T) {
 	data := getData()
 	assert.NotNil(t, data)
 
-	filename := "[Judas] One Punch Man - S01SP02"
+	filename := "[TardSubs] Nihon Animator Mihonichi 01 - The Dragon Dentist (BD 1080p) [A7A5BCFD].mkv"
 
 	for _, tt := range data {
 
